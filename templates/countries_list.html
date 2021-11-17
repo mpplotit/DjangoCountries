@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+{% for letter in Alfavit%}
+<a href="{% url 'countries-from-letter' first_letter=letter %}">{{letter}}</a>
+{%endfor%}
+<ol>
+{%for country in Countries%}
+    <li><a href="{% url 'country' country_name=country %}">{{country}}</a></li>
+    {%endfor%}
+</ol>
+{% endblock %}
