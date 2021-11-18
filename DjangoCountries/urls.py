@@ -22,4 +22,8 @@ urlpatterns = [
     path('countries-list', views.get_countries_list, name='countries-list'),
     path('country/<str:country_name>', views.get_country, name='country'),
     path('countries-that-start-with-<str:first_letter>', views.get_countries_from_letter, name='countries-from-letter'),
+    path('languages-list', views.get_languages_list, name='languages-list'),
+    path('countries-with-language-<str:language_name>', views.get_countries_from_language,
+         name='countries-from-language'),
+
 ]

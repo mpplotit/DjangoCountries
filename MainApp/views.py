@@ -51,3 +51,29 @@ def get_countries_from_letter(request, first_letter):
                'Alfavit': Alfavit,
                'first_letter': first_letter}
     return render(request, 'countries_from_letter.html', context)
+
+
+def get_languages_list(request):
+    languages_name_list = []
+    for country_dict in countries:
+        languages_name_list += country_dict.get('languages')
+    languages_name_list = list(set(languages_name_list))
+    languages_name_list.sort()
+    context = {'Page': {'title': 'Список языков мира'},
+               'Languages': languages_name_list,
+               'Alfavit': Alfavit}
+    return render(request, 'languages_list.html', context)
+
+
+def get_countries_from_language(request, language_name):
+    countries_name_list = []
+    for country_dict in countries:
+        if language_name in country_dict.get('languages'):
+            countries_name_list.append(country_dict.get('country'))
+    countries_name_list = list(set(countries_name_list))
+    countries_name_list.sort()
+    print(countries_name_list)
+    context = {'Page': {'title': f'Список стран, говорящих на языке {language_name}'},
+               'Countries': countries_name_list,
+               'Alfavit': Alfavit}
+    return render(request, 'countries_list.html', context)

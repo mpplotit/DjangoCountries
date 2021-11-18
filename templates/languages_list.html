@@ -4,9 +4,8 @@
 <a href="{% url 'countries-from-letter' first_letter=letter %}">{{letter}}</a>
 {%endfor%}
 <ol>
-{%for country in Countries%}
-    <li><a href="{% url 'country' country_name=country %}">{{country}}</a></li>
-     {% empty %} Нет ни одной страны на букву {{first_letter}}
+{%for language in Languages%}
+    <li><a href="{% url 'countries-from-language' language_name=language %}">{{language}}</a></li>
     {%endfor%}
 </ol>
 {% endblock %}
