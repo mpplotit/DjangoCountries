@@ -8,4 +8,11 @@
     <li><a href="{% url 'country' country_name=country %}">{{country}}</a></li>
     {%endfor%}
 </ol>
+
+{%for page in page_list%}
+<b><a href="{% url 'countries-list' page_number=page%}">{{page}}</a></b>
+
+{%endfor%}
+
+
 {% endblock %}

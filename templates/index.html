@@ -2,6 +2,6 @@
 {% block content %}
 <H1>Привет, гость!На нашем сайте собрана интересная информация о каждой стране мира.<br>
     Для ознакомления перейдите по ссылкам:<br>
-    <a href="{% url 'countries-list'%}">Страны мира</a><br>
+    <a href="{% url 'countries-list' page_number=1%}">Страны мира</a><br>
     <a href="{% url 'languages-list'%}">Языки мира</a></H1>
 {% endblock %}with

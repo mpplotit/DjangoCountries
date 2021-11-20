@@ -1,5 +1,6 @@
 from django.shortcuts import render
 import json
+import math
 from django.http import Http404
 
 with open('country-by-languages.json', 'r') as jsonfile:
@@ -17,13 +18,20 @@ def home(request):
     return render(request, 'index.html', context)
 
 
-def get_countries_list(request):
+def get_countries_list(request, page_number):
+    period = 10
     countries_name_list = []
     for country_dict in countries:
         countries_name_list.append(country_dict.get('country'))
+    max_page_number = math.ceil(len(countries_name_list) / period)
+    countries_name_list = countries_name_list[(page_number - 1) * period:page_number * period]
+    page_list = [i for i in range(1, max_page_number + 1)]
     context = {'Page': {'title': 'Список стран'},
                'Countries': countries_name_list,
-               'Alfavit': Alfavit}
+               'Alfavit': Alfavit,
+               'page_number': page_number,
+               'max_page_number': max_page_number,
+               'page_list': page_list}
     return render(request, 'countries_list.html', context)
 
 
@@ -32,7 +40,7 @@ def get_country(request, country_name):
         if country_dict.get('country') == country_name:
             country = country_dict
             context = {'Page': {'title': f'Описание страны {country_name}'},
-                       'Country': country,
+                       'Country': country
                        }
             return render(request, 'country.html', context)
     raise Http404

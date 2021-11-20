@@ -19,7 +19,7 @@ from MainApp import views
 
 urlpatterns = [
     path('', views.home),
-    path('countries-list', views.get_countries_list, name='countries-list'),
+    path('countries-list/page/<int:page_number>', views.get_countries_list, name='countries-list'),
     path('country/<str:country_name>', views.get_country, name='country'),
     path('countries-that-start-with-<str:first_letter>', views.get_countries_from_letter, name='countries-from-letter'),
     path('languages-list', views.get_languages_list, name='languages-list'),
