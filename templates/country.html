@@ -6,5 +6,5 @@
     <li>{{language}}</li>
     {%endfor%}
 </ol>
-<a href="{% url 'countries-list' %}">К списку стран</a>
+<a href="{% url 'countries-list' page_number=1%}">К списку стран</a>
 {% endblock %}
